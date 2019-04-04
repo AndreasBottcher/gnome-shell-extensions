@@ -230,17 +230,21 @@ class ApplicationsMenu extends PopupMenu.PopupMenu {
     }
 
     open(animate) {
-        this._button.hotCorner.setBarrierSize(0);
-        if (this._button.hotCorner.actor) // fallback corner
-            this._button.hotCorner.actor.hide();
+        if (this._button.hotCorner !== undefined) {
+            this._button.hotCorner.setBarrierSize(0);
+            if (this._button.hotCorner.actor) // fallback corner
+                this._button.hotCorner.actor.hide();
+        }
         super.open(animate);
     }
 
     close(animate) {
-        let size = Main.layoutManager.panelBox.height;
-        this._button.hotCorner.setBarrierSize(size);
-        if (this._button.hotCorner.actor) // fallback corner
-            this._button.hotCorner.actor.show();
+        if (this._button.hotCorner !== undefined) {
+            let size = Main.layoutManager.panelBox.height;
+            this._button.hotCorner.setBarrierSize(size);
+            if (this._button.hotCorner.actor) // fallback corner
+                this._button.hotCorner.actor.show();
+        }
         super.close(animate);
     }
 
